@@ -1,0 +1,21 @@
+{
+  "name": "rsschool-landing-page",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch scss/main.scss css/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snischuk/rsschool-landing-page.git"
+  },
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/snischuk/rsschool-landing-page/issues"
+  },
+  "homepage": "https://github.com/snischuk/rsschool-landing-page#readme",
+  "devDependencies": {
+    "sass": "^1.104.1"
+  }
+}
