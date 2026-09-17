@@ -17,5 +17,8 @@
   "homepage": "https://github.com/snischuk/rsschool-landing-page#readme",
   "devDependencies": {
     "sass": "^1.104.1"
+  },
+  "dependencies": {
+    "modern-normalize": "^3.0.1"
   }
 }
