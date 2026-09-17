@@ -1,0 +1,157 @@
+.contacts {
+  max-width: 1440px;
+  margin: 0 auto 40px;
+  padding: 0 var(--custom-gap);
+
+  @media (width <= 768px) {
+    scroll-margin-top: var(--header-height);
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 100px;
+
+    padding: 100px;
+
+    border-radius: 40px;
+    background: var(--bg-container);
+
+    @media (width <= 768px) {
+      flex-direction: column;
+      align-items: stretch;
+      padding: 100px 60px;
+    }
+
+    @media (width <= 525px) {
+      gap: 40px;
+      padding: 60px 16px;
+    }
+  }
+
+  &__left {
+    flex: 1 0 calc(50% - 100px);
+  }
+
+  &__title {
+    margin-bottom: 40px;
+
+    color: var(--text-inverse);
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 75px;
+
+    @media (width <= 525px) {
+      font-size: 32px;
+      line-height: 40px;
+    }
+
+    &--accent {
+      color: var(--text-accent);
+      font-style: italic;
+    }
+  }
+
+  &__list-links-social {
+    display: flex;
+    gap: 12px;
+  }
+
+  &__link-social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 17px;
+
+    border: 1px solid var(--border-primary);
+    border-radius: 50%;
+
+    transition: background-color 0.3s ease-in-out,
+      border-color 0.3s ease-in-out;
+
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: var(--bg-page);
+        border-color: transparent;
+
+        .contacts__icon-social {
+          stroke: var(--text-primary);
+        }
+      }
+    }
+  }
+
+  &__icon-social {
+    fill: none;
+    stroke: var(--text-inverse);
+
+    transition: stroke 0.3s ease-in-out;
+  }
+
+  &__right {
+    flex: 1 1 calc(50% - 100px);
+  }
+
+  &__subtitle {
+    margin-bottom: 36px;
+
+    color: var(--text-inverse);
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  &__list-links-service {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__link-service,
+  &__schedule {
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+
+    padding: 4px 0;
+
+    color: var(--text-inverse);
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  &__link-service {
+    &::after {
+      content: "";
+
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+
+      width: 0;
+      height: 2px;
+
+      background-color: var(--text-inverse);
+      opacity: 0;
+
+      transition: all 0.3s ease-in-out;
+    }
+
+    @media (any-hover: hover) {
+      &:hover::after {
+        left: 0;
+        width: 100%;
+        opacity: 1;
+      }
+    }
+  }
+
+  &__icon-service {
+    margin-right: 10px;
+
+    fill: none;
+    stroke: var(--text-inverse);
+  }
+}

@@ -19,19 +19,19 @@
   }
 }
 
-// @media (prefers-color-scheme: dark) {
-//   :root:not(.theme-light) {
-//     --text-primary: #e1d4c9;
-//     --text-inverse: #e1d4c9;
+@media (prefers-color-scheme: dark) {
+  :root:not(.theme-light) {
+    --text-primary: #e1d4c9;
+    --text-inverse: #e1d4c9;
 
-//     --bg-page: #292826;
-//     --bg-container: #403f3d;
-//     --bg-overlay: rgba(41, 40, 38, 0.8);
+    --bg-page: #292826;
+    --bg-container: #403f3d;
+    --bg-overlay: rgba(41, 40, 38, 0.8);
 
-//     --border-primary: #665f55;
-//     --border-inverse: #c1b6ad;
-//   }
-// }
+    --border-primary: #665f55;
+    --border-inverse: #c1b6ad;
+  }
+}
 
 html {
   scroll-behavior: smooth;
