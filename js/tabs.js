@@ -1,4 +1,4 @@
-import products from '../../assets/mock-data/products.json' with { type: "json" };
+import products from '../assets/mock-data/products.json' with { type: "json" };
 
 function initTabs() {
     const backdrop = document.querySelector('.modal-backdrop');

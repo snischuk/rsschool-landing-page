@@ -977,13 +977,13 @@ fieldset {
   transition: background-color 0.3s ease-in-out;
 }
 .menu__button-emoji--coffee {
-  background-image: url("../../assets/images/menu-page/gallery/icons-buttons/category-coffee.png");
+  background-image: url("../assets/images/menu-page/gallery/icons-buttons/category-coffee.png");
 }
 .menu__button-emoji--tea {
-  background-image: url("../../assets/images/menu-page/gallery/icons-buttons/category-tea.png");
+  background-image: url("../assets/images/menu-page/gallery/icons-buttons/category-tea.png");
 }
 .menu__button-emoji--dessert {
-  background-image: url("../../assets/images/menu-page/gallery/icons-buttons/category-dessert.png");
+  background-image: url("../assets/images/menu-page/gallery/icons-buttons/category-dessert.png");
 }
 .menu__button--active .menu__button-emoji {
   background-color: var(--bg-page);
