@@ -526,6 +526,7 @@ fieldset {
 .favorites__slider-price {
   color: var(--text-primary);
   font-size: 24px;
+  font-weight: 600;
   line-height: 30px;
 }
 .favorites__slider-progress-bars {
@@ -735,6 +736,7 @@ fieldset {
   padding: 12px 20px;
   color: var(--text-primary);
   font-size: 16px;
+  font-weight: 600;
   line-height: 24px;
   border: 1px solid var(--border-primary);
   border-radius: 100px;
@@ -850,6 +852,7 @@ fieldset {
   margin-bottom: 36px;
   color: var(--text-inverse);
   font-size: 24px;
+  font-weight: 600;
   line-height: 30px;
 }
 .contacts__list-links-service {
@@ -864,6 +867,7 @@ fieldset {
   padding: 4px 0;
   color: var(--text-inverse);
   font-size: 16px;
+  font-weight: 600;
   line-height: 24px;
 }
 .contacts__link-service::after {
