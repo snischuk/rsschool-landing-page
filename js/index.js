@@ -1,30 +1,30 @@
-console.log('Hello, world!');
+// console.log('Hello, world!');
 // function initBurgerMenu() {
 //     const burger = document.querySelector('.header__burger');
-//     const links = document.querySelector('.header__links-wrapper');
+//     const navMobile = document.querySelector('.nav-mobile');
 //     const body = document.querySelector('body');
 
-//     function clickedLinkHandler(event){
+//     function clickLinkHandler(event){
 //         if(!burger.classList.contains('header__burger--active')) return;
 //         if (event.target.tagName !== 'A') return;
 
 //         body.classList.remove('js-lock');
 //         burger.classList.remove('header__burger--active');
-//         links.classList.remove('header__links-wrapper--active');
+//         navMobile.classList.remove('nav-mobile--active');
 //     }
 
 //     function toggleBurgerHandler() {
 //         body.classList.toggle('js-lock');
 //         burger.classList.toggle('header__burger--active');
-//         links.classList.toggle('header__links-wrapper--active');
+//         navMobile.classList.toggle('nav-mobile--active');
 
-//         links.addEventListener('click', clickedLinkHandler, { once: true })
+//         navMobile.addEventListener('click', clickLinkHandler, { once: true })
 //     }
     
 //     burger.addEventListener('click', toggleBurgerHandler);
 // }
 
-// document.addEventListener('DOMContentLoaded', initBurgerMenu)
+// initBurgerMenu();
 
 // function initSlider() {
 //     const bars = document.querySelectorAll('.favorites__slider-progress-bar');
@@ -144,3 +144,28 @@ console.log('Hello, world!');
 // }
 
 // document.addEventListener('DOMContentLoaded', initSlider);
+
+// const initMobileMenu = () => {
+//   const burger = document.querySelector('.header__burger');
+//   const mobileMenu = document.querySelector('.nav-mobile');
+//   const mobileLinks = document.querySelectorAll('.nav-mobile__link');
+
+//   const toggleMenu = () => {
+//     const isOpen = mobileMenu.classList.toggle('nav-mobile--open');
+
+//     burger.setAttribute('aria-expanded', isOpen);
+//     document.body.classList.toggle('js-lock', isOpen);
+//   };
+
+//   burger.addEventListener('click', toggleMenu);
+
+//   mobileLinks.forEach((link) => {
+//     link.addEventListener('click', () => {
+//       mobileMenu.classList.remove('nav-mobile--open');
+//       burger.setAttribute('aria-expanded', 'false');
+//       document.body.classList.remove('js-lock');
+//     });
+//   });
+// };
+
+// initMobileMenu();

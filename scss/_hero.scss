@@ -3,10 +3,14 @@
   margin: 0 auto;
   padding: 0 var(--custom-gap) 100px;
 
+  @media (width <= 768px) {
+    padding-top: var(--header-height);
+  }
+
   &__container {
     display: grid;
-    min-height: 644px;
-    
+    max-height: 644px;
+
     border-radius: 40px;
     overflow: hidden;
 
@@ -137,9 +141,5 @@
       width: 0;
       opacity: 0;
     }
-  }
-
-  @media (width <= 768px) {
-    padding-top: var(--header-height);
   }
 }

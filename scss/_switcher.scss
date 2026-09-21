@@ -1,0 +1,53 @@
+.switcher {
+  display: flex;
+  gap: 8px;
+
+  padding: 4px;
+
+  border: 1px solid var(--border-primary);
+  border-radius: 100px;
+
+  &__input {
+    &:checked + .switcher__option {
+      background-color: var(--bg-switcher-active);
+
+      .switcher__icon {
+        fill: var(--text-inverse);
+      }
+    }
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    background-color: transparent;
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    transition: background-color 0.3s ease-in-out;
+
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: var(--bg-container);
+
+        .switcher__icon {
+          fill: var(--text-inverse);
+        }
+      }
+    }
+  }
+
+  &__icon {
+    display: block;
+
+    fill: var(--text-primary);
+
+    transition: fill 0.3s ease-in-out;
+  }
+}

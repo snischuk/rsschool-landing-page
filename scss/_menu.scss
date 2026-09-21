@@ -155,7 +155,8 @@
       border-color: var(--border-inverse);
       border-radius: 50%;
 
-      transition: background-color 0.3s ease-in-out,
+      transition:
+        background-color 0.3s ease-in-out,
         border-color 0.3s ease-in-out;
 
       @media (any-hover: hover) {
