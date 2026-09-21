@@ -6,6 +6,7 @@ const initMobileMenu = () => {
   const toggleMenu = () => {
     const isOpen = mobileMenu.classList.toggle('nav-mobile--open');
 
+    burger.classList.toggle('header__burger--active', isOpen);
     burger.setAttribute('aria-expanded', isOpen);
     document.body.classList.toggle('js-lock', isOpen);
   };
@@ -15,6 +16,7 @@ const initMobileMenu = () => {
   mobileLinks.forEach((link) => {
     link.addEventListener('click', () => {
       mobileMenu.classList.remove('nav-mobile--open');
+      burger.classList.remove('header__burger--active');
       burger.setAttribute('aria-expanded', 'false');
       document.body.classList.remove('js-lock');
     });
