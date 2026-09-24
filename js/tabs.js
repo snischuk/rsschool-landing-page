@@ -6,6 +6,7 @@ function initTabs() {
   const tabsContainer = document.querySelector(".menu__buttons");
   const buttons = document.querySelectorAll(".menu__button");
   const cardsContainer = document.querySelector(".menu__list-cards");
+  const loadMoreBtn = document.querySelector(".menu__load-more-btn");
 
   let filteredProducts;
   let currentProduct;
@@ -59,14 +60,13 @@ function initTabs() {
     targetTab.classList.add("menu__button--active");
 
     const selectedCategory = targetTab.dataset.tab;
+
     filteredProducts = products.filter(
       (product) => product.category === selectedCategory,
     );
 
     renderCards(cardsContainer, filteredProducts);
   }
-
-  const loadMoreBtn = document.querySelector(".menu__load-more-btn");
 
   function deleteLoadMoreBtn() {
     loadMoreBtn.style.display = "none";
@@ -95,8 +95,6 @@ function initTabs() {
     } else {
       loadMoreBtn.style.display = "none";
     }
-
-    loadMoreBtn.addEventListener("click", clickLoadMoreBtnHandler);
   }
 
   function clickCardHandler(event) {
@@ -117,6 +115,7 @@ function initTabs() {
     defaultActiveTab.classList.add("menu__button--active");
 
     const defaultCategoryName = defaultActiveTab.dataset.tab;
+
     filteredProducts = products.filter(
       (product) => product.category === defaultCategoryName,
     );
@@ -133,6 +132,7 @@ function initTabs() {
     const targettedElement = event.target;
 
     if (targettedElement.matches(".modal__button-reset")) closeModal();
+
     if (targettedElement.matches(".modal-backdrop--active")) closeModal();
   }
 
@@ -143,12 +143,6 @@ function initTabs() {
     ) {
       closeModal();
     }
-  });
-
-  body.addEventListener("click", clickBodyHandler);
-
-  backdrop.addEventListener("change", () => {
-    calculatePriceHandler(currentProduct);
   });
 
   function createProductModal(product) {
@@ -247,6 +241,7 @@ function initTabs() {
     }, 0);
 
     const finalPrice = Number.parseFloat(price) + sizesPrice + additivesPrice;
+
     totalPriceElement.innerHTML = `$${finalPrice.toFixed(2)}`;
   }
 
@@ -261,6 +256,14 @@ function initTabs() {
     body.classList.add("js-lock");
     backdrop.classList.add("modal-backdrop--active");
   }
+
+  body.addEventListener("click", clickBodyHandler);
+
+  backdrop.addEventListener("change", () => {
+    calculatePriceHandler(currentProduct);
+  });
+
+  loadMoreBtn.addEventListener("click", clickLoadMoreBtnHandler);
 
   tabsContainer.addEventListener("click", clickTabHandler);
   cardsContainer.addEventListener("click", clickCardHandler);
