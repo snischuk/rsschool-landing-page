@@ -134,6 +134,16 @@ function initTabs() {
     if (targettedElement.matches(".modal__button-reset")) closeModal();
     if (targettedElement.matches(".modal-backdrop--active")) closeModal();
   }
+
+  document.addEventListener("keydown", (event) => {
+    if (
+      event.key === "Escape" &&
+      backdrop.classList.contains("modal-backdrop--active")
+    ) {
+      closeModal();
+    }
+  });
+
   function createProductModal(product) {
     const imageNameWithHyphens = product.name
       .toLowerCase()
