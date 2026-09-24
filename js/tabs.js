@@ -8,6 +8,7 @@ function initTabs() {
   const cardsContainer = document.querySelector(".menu__list-cards");
 
   let filteredProducts;
+  let currentProduct;
 
   function clearContainer(container) {
     if (!container) return;
@@ -144,6 +145,12 @@ function initTabs() {
     }
   });
 
+  body.addEventListener("click", clickBodyHandler);
+
+  backdrop.addEventListener("change", () => {
+    calculatePriceHandler(currentProduct);
+  });
+
   function createProductModal(product) {
     const imageNameWithHyphens = product.name
       .toLowerCase()
@@ -249,11 +256,10 @@ function initTabs() {
     const productModal = createProductModal(product);
     backdrop.insertAdjacentHTML("afterBegin", productModal);
 
+    currentProduct = product;
+
     body.classList.add("js-lock");
     backdrop.classList.add("modal-backdrop--active");
-
-    body.addEventListener("click", clickBodyHandler);
-    backdrop.addEventListener("change", () => calculatePriceHandler(product));
   }
 
   tabsContainer.addEventListener("click", clickTabHandler);
