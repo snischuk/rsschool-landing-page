@@ -207,24 +207,24 @@ fieldset {
   content: "";
   position: absolute;
   bottom: 7px;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background-color: var(--text-primary);
-  opacity: 0;
-  transition: all 0.3s ease-in-out;
-}
-.header__link--active {
-  pointer-events: none;
-}
-.header__link--active::before {
-  content: "";
-  position: absolute;
-  bottom: 7px;
   left: 0;
   width: 100%;
   height: 2px;
   background-color: var(--text-primary);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease-in-out;
+}
+.header__link--active {
+  pointer-events: none;
+}
+.header__link--active::after {
+  transform: scaleX(1);
+}
+@media (any-hover: hover) {
+  .header__link:hover::after {
+    transform: scaleX(1);
+  }
 }
 @media (width <= 893px) {
   .header__link {
@@ -915,18 +915,17 @@ fieldset {
   content: "";
   position: absolute;
   bottom: 0;
-  left: 50%;
-  width: 0;
+  left: 0;
+  width: 100%;
   height: 2px;
   background-color: var(--text-inverse);
-  opacity: 0;
-  transition: all 0.3s ease-in-out;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease-in-out;
 }
 @media (any-hover: hover) {
   .contacts__link-service:hover::after {
-    left: 0;
-    width: 100%;
-    opacity: 1;
+    transform: scaleX(1);
   }
 }
 .contacts__icon-service {
@@ -1183,6 +1182,12 @@ fieldset {
   transform: scaleX(0);
   transform-origin: center;
   transition: transform 0.3s ease-in-out;
+}
+.nav-mobile__link--active {
+  pointer-events: none;
+}
+.nav-mobile__link--active::after {
+  transform: scaleX(1);
 }
 @media (any-hover: hover) {
   .nav-mobile__link:hover::after {

@@ -61,6 +61,14 @@
       transition: transform 0.3s ease-in-out;
     }
 
+    &--active {
+      pointer-events: none;
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+
     @media (any-hover: hover) {
       &:hover::after {
         transform: scaleX(1);
