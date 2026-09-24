@@ -2,7 +2,7 @@ import products from "../assets/mock-data/products.json" with { type: "json" };
 
 function initTabs() {
   const backdrop = document.querySelector(".modal-backdrop");
-  const body = document.querySelector("body");
+  const body = document.body;
   const tabsContainer = document.querySelector(".menu__buttons");
   const buttons = document.querySelectorAll(".menu__button");
   const cardsContainer = document.querySelector(".menu__list-cards");
@@ -38,15 +38,12 @@ function initTabs() {
   function renderCards(container, cards) {
     clearContainer(container);
 
-    const renderedCards = cards.map((card) => {
+    cards.forEach((card) => {
       const categoryCard = createCardElement(card);
       container.insertAdjacentHTML("beforeEnd", categoryCard);
-      return categoryCard;
     });
 
-    addLoadMoreBtn();
-
-    return renderedCards;
+    addLoadMoreBtn(cards);
   }
 
   function clickTabHandler(event) {
@@ -84,13 +81,13 @@ function initTabs() {
     deleteLoadMoreBtn();
   }
 
-  function addLoadMoreBtn() {
+  function addLoadMoreBtn(cards) {
     const LIMIT_CARDS = 4;
 
     const mediaQuery = window.matchMedia("(max-width: 768px)");
     if (!mediaQuery.matches) return;
 
-    if (filteredProducts.length > LIMIT_CARDS) {
+    if (cards.length > LIMIT_CARDS) {
       loadMoreBtn.style.display = "flex";
     } else {
       loadMoreBtn.style.display = "none";
@@ -98,16 +95,18 @@ function initTabs() {
   }
 
   function clickCardHandler(event) {
-    const targettedCard = event.target.closest(".menu__card");
+    const targetCard = event.target.closest(".menu__card");
 
-    const titleElement = targettedCard.querySelector(".card__title");
+    if (!targetCard) return;
+
+    const titleElement = targetCard.querySelector(".card__title");
     const titleText = titleElement.textContent;
 
-    const findedProduct = filteredProducts.find(
+    const foundProduct = filteredProducts.find(
       (product) => product.name === titleText,
     );
 
-    openModal(findedProduct);
+    openModal(foundProduct);
   }
 
   function setDefaultTab() {
@@ -129,11 +128,11 @@ function initTabs() {
   }
 
   function clickBodyHandler(event) {
-    const targettedElement = event.target;
+    const targetElement = event.target;
 
-    if (targettedElement.matches(".modal__button-reset")) closeModal();
+    if (targetElement.matches(".modal__button-reset")) closeModal();
 
-    if (targettedElement.matches(".modal-backdrop--active")) closeModal();
+    if (targetElement.matches(".modal-backdrop--active")) closeModal();
   }
 
   document.addEventListener("keydown", (event) => {
@@ -242,7 +241,7 @@ function initTabs() {
 
     const finalPrice = Number.parseFloat(price) + sizesPrice + additivesPrice;
 
-    totalPriceElement.innerHTML = `$${finalPrice.toFixed(2)}`;
+    totalPriceElement.textContent = `$${finalPrice.toFixed(2)}`;
   }
 
   function openModal(product) {
