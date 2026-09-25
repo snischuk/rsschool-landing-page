@@ -15,6 +15,7 @@ const initMobileMenu = () => {
 
     burger.classList.toggle("header__burger--active", isOpen);
     burger.setAttribute("aria-expanded", isOpen);
+    burger.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
     document.body.classList.toggle("js-lock", isOpen);
   };
 
