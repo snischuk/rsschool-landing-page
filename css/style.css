@@ -207,24 +207,24 @@ fieldset {
   content: "";
   position: absolute;
   bottom: 7px;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background-color: var(--text-primary);
-  opacity: 0;
-  transition: all 0.3s ease-in-out;
-}
-.header__link--active {
-  pointer-events: none;
-}
-.header__link--active::before {
-  content: "";
-  position: absolute;
-  bottom: 7px;
   left: 0;
   width: 100%;
   height: 2px;
   background-color: var(--text-primary);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease-in-out;
+}
+.header__link--active {
+  pointer-events: none;
+}
+.header__link--active::after {
+  transform: scaleX(1);
+}
+@media (any-hover: hover) {
+  .header__link:hover::after {
+    transform: scaleX(1);
+  }
 }
 @media (width <= 893px) {
   .header__link {
@@ -549,6 +549,7 @@ fieldset {
   text-align: center;
 }
 .favorites__slider-image {
+  height: auto;
   width: 100%;
   margin-bottom: 4px;
 }
@@ -587,9 +588,11 @@ fieldset {
   position: absolute;
   top: 0;
   left: 0;
-  width: 0;
+  width: 100%;
   height: 100%;
   background-color: var(--border-inverse);
+  transform: scaleX(0);
+  transform-origin: left;
 }
 .favorites__slider-progress-bar--animated {
   animation-name: bar-animation;
@@ -600,10 +603,10 @@ fieldset {
 
 @keyframes bar-animation {
   from {
-    width: 0;
+    transform: scaleX(0);
   }
   to {
-    width: 100%;
+    transform: scaleX(1);
   }
 }
 .about {
@@ -915,18 +918,17 @@ fieldset {
   content: "";
   position: absolute;
   bottom: 0;
-  left: 50%;
-  width: 0;
+  left: 0;
+  width: 100%;
   height: 2px;
   background-color: var(--text-inverse);
-  opacity: 0;
-  transition: all 0.3s ease-in-out;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease-in-out;
 }
 @media (any-hover: hover) {
   .contacts__link-service:hover::after {
-    left: 0;
-    width: 100%;
-    opacity: 1;
+    transform: scaleX(1);
   }
 }
 .contacts__icon-service {
@@ -1022,21 +1024,22 @@ fieldset {
   transition: background-color 0.3s ease-in-out;
 }
 .menu__button-emoji--coffee {
-  background-image: url("../assets/images/menu-page/gallery/icons-buttons/category-coffee.png");
+  background-image: url("../assets/images/menu-page/gallery/icons-buttons/category-coffee.webp");
 }
 .menu__button-emoji--tea {
-  background-image: url("../assets/images/menu-page/gallery/icons-buttons/category-tea.png");
+  background-image: url("../assets/images/menu-page/gallery/icons-buttons/category-tea.webp");
 }
 .menu__button-emoji--dessert {
-  background-image: url("../assets/images/menu-page/gallery/icons-buttons/category-dessert.png");
+  background-image: url("../assets/images/menu-page/gallery/icons-buttons/category-dessert.webp");
 }
 .menu__button--active .menu__button-emoji {
   background-color: var(--bg-page);
 }
 .menu__list-cards {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  justify-items: center;
   gap: 40px;
 }
 @media (width <= 768px) {
@@ -1183,6 +1186,12 @@ fieldset {
   transform: scaleX(0);
   transform-origin: center;
   transition: transform 0.3s ease-in-out;
+}
+.nav-mobile__link--active {
+  pointer-events: none;
+}
+.nav-mobile__link--active::after {
+  transform: scaleX(1);
 }
 @media (any-hover: hover) {
   .nav-mobile__link:hover::after {
