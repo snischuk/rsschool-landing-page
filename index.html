@@ -124,7 +124,6 @@
         <div class="hero__container">
           <video
             class="hero__promo-video"
-            src="./assets/videos/promo-coffee_2160p.webm"
             poster="./assets/images/home-page/video-poster.webp"
             autoplay
             muted
@@ -132,7 +131,18 @@
             width="3840"
             height="2024"
             fetchpriority="high"
-          ></video>
+          >
+            <source
+              src="./assets/videos/promo-coffee_720p.webm"
+              media="(max-width: 768px)"
+              type="video/webm"
+            />
+
+            <source
+              src="./assets/videos/promo-coffee_2160p.webm"
+              type="video/webm"
+            />
+          </video>
 
           <div class="hero__info">
             <h1 class="hero__title">
