@@ -37,7 +37,7 @@
     --border-inverse: #c1b6ad;
   }
 }
-:root[data-theme="light"] {
+:root[data-theme=light] {
   --text-primary: #403f3d;
   --text-inverse: #e1d4c9;
   --bg-page: #e1d4c9;
@@ -51,7 +51,7 @@
   --border-inverse: #665f55;
 }
 
-:root[data-theme="dark"] {
+:root[data-theme=dark] {
   --text-primary: #e1d4c9;
   --text-inverse: #e1d4c9;
   --bg-page: #292826;
@@ -257,20 +257,15 @@ fieldset {
     border: 1px solid;
     border-color: var(--border-primary);
     border-radius: 50%;
-    transition:
-      background-color 0.3s ease-in-out,
-      border-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
   }
-  .header__burger::before,
-  .header__burger::after {
+  .header__burger::before, .header__burger::after {
     content: "";
     position: absolute;
     width: 17px;
     height: 2px;
     background-color: var(--text-primary);
-    transition:
-      background-color 0.3s ease-in-out,
-      transform 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
   }
   .header__burger::before {
     transform: translateY(-4px);
@@ -295,8 +290,7 @@ fieldset {
     background-color: var(--bg-container);
     border-color: transparent;
   }
-  .header__burger:hover::before,
-  .header__burger:hover::after {
+  .header__burger:hover::before, .header__burger:hover::after {
     background-color: var(--text-inverse);
   }
 }
@@ -509,9 +503,7 @@ fieldset {
   background-color: transparent;
   border: 1px solid var(--text-primary);
   border-radius: 50%;
-  transition:
-    background-color 0.3s ease-in-out,
-    border-color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 @media (width <= 525px) {
   .favorites__slider-btn {
@@ -789,10 +781,7 @@ fieldset {
   line-height: 24px;
   border: 1px solid var(--border-primary);
   border-radius: 100px;
-  transition:
-    background-color 0.3s ease-in-out,
-    border-color 0.3s ease-in-out,
-    color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 @media (any-hover: hover) {
   .mobile-app__button:hover {
@@ -881,9 +870,7 @@ fieldset {
   padding: 17px;
   border: 1px solid var(--border-primary);
   border-radius: 50%;
-  transition:
-    background-color 0.3s ease-in-out,
-    border-color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 @media (any-hover: hover) {
   .contacts__link-social:hover {
@@ -914,8 +901,7 @@ fieldset {
   flex-direction: column;
   gap: 12px;
 }
-.contacts__link-service,
-.contacts__schedule {
+.contacts__link-service, .contacts__schedule {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -1007,10 +993,7 @@ fieldset {
   background-color: transparent;
   border: 1px solid var(--border-primary);
   border-radius: 100px;
-  transition:
-    color 0.3s ease-in-out,
-    background-color 0.3s ease-in-out,
-    border 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border 0.3s ease-in-out;
 }
 .menu__button--active {
   color: var(--text-inverse);
@@ -1057,7 +1040,7 @@ fieldset {
   gap: 40px;
 }
 @media (width <= 768px) {
-  .menu__list-cards li:nth-child(n + 5) {
+  .menu__list-cards li:nth-child(n+5) {
     display: none;
   }
   .menu__list-cards li.show-more {
@@ -1082,9 +1065,7 @@ fieldset {
     border: 1px solid;
     border-color: var(--border-inverse);
     border-radius: 50%;
-    transition:
-      background-color 0.3s ease-in-out,
-      border-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
   }
 }
 @media (width <= 768px) and (any-hover: hover) {
@@ -1327,10 +1308,7 @@ fieldset {
   border: 1px solid;
   border-color: var(--border-primary);
   border-radius: 100px;
-  transition:
-    color 0.3s ease-in-out,
-    background-color 0.3s ease-in-out,
-    border-color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 @media (any-hover: hover) {
   .modal__input-custom:hover {
@@ -1367,8 +1345,7 @@ fieldset {
   justify-content: space-between;
   gap: 20px;
 }
-.modal__total-text,
-.modal__total-price {
+.modal__total-text, .modal__total-price {
   color: var(--text-primary);
   font-size: 24px;
   font-weight: 600;
@@ -1401,10 +1378,7 @@ fieldset {
   border: 1px solid;
   border-color: var(--border-primary);
   border-radius: 100px;
-  transition:
-    border-color 0.3s ease-in-out,
-    background-color 0.3s ease-in-out,
-    color 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 @media (any-hover: hover) {
   .modal__button-reset:hover {

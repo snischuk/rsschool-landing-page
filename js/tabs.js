@@ -23,7 +23,7 @@ function initTabs() {
             <li>
                 <article class="menu__card card">
                     <div class="card__image-wrapper">
-                        <img class="card__image" src="./assets/images/menu-page/gallery/${imageNameWithHyphens}.webp" alt="${name}">
+                        <img class="card__image" src="./assets/images/menu-page/gallery/${imageNameWithHyphens}.webp" alt="${name}" width="340" height="340">
                     </div>
                     <div class="card__info">
                         <h3 class="card__title">${name}</h3>
@@ -174,7 +174,7 @@ function initTabs() {
     return `
             <form class="modal">
                 <div class="modal__image-wrapper">
-                    <img class="modal__image" src="./assets/images/menu-page/gallery/${imageNameWithHyphens}.webp" alt="${product.name}">
+                    <img class="modal__image" src="./assets/images/menu-page/gallery/${imageNameWithHyphens}.webp" alt="${product.name}" width="340" height="340">
                 </div>
                 <div class="modal__content">
                     <div class="modal__header">
