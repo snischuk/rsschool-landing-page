@@ -18,10 +18,6 @@
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
 
-  &--open {
-    transform: translateX(0);
-  }
-
   &__list {
     display: flex;
     flex-direction: column;
@@ -74,5 +70,11 @@
 
     fill: none;
     stroke: currentColor;
+  }
+
+  @media (width <= 768px) {
+    &--open {
+      transform: translateX(0);
+    }
   }
 }

@@ -1,27 +1,29 @@
-import products from '../assets/mock-data/products.json' with { type: "json" };
+import products from "../assets/mock-data/products.json" with { type: "json" };
 
 function initTabs() {
-    const backdrop = document.querySelector('.modal-backdrop');
-    const body = document.querySelector('body');
-    const tabsContainer = document.querySelector('.menu__buttons');
-    const buttons = document.querySelectorAll('.menu__button');
-    const cardsContainer = document.querySelector('.menu__list-cards');
+  const backdrop = document.querySelector(".modal-backdrop");
+  const body = document.body;
+  const tabsContainer = document.querySelector(".menu__buttons");
+  const buttons = document.querySelectorAll(".menu__button");
+  const cardsContainer = document.querySelector(".menu__list-cards");
+  const loadMoreBtn = document.querySelector(".menu__load-more-btn");
 
-    let filteredProducts;
+  let filteredProducts;
+  let currentProduct;
 
-    function clearContainer(container) {
-        if (!container) return;
-        container.innerHTML = '';
-    }
+  function clearContainer(container) {
+    if (!container) return;
+    container.innerHTML = "";
+  }
 
-    function createCardElement({ name, description, price }) {
-        const imageNameWithHyphens = name.toLowerCase().replace(/\s+/g, '-');
+  function createCardElement({ name, description, price }) {
+    const imageNameWithHyphens = name.toLowerCase().replace(/\s+/g, "-");
 
-        return `
+    return `
             <li>
                 <article class="menu__card card">
                     <div class="card__image-wrapper">
-                        <img class="card__image" src="./assets/images/menu-page/gallery/${imageNameWithHyphens}.jpeg" alt="${name}">
+                        <img class="card__image" src="./assets/images/menu-page/gallery/${imageNameWithHyphens}.webp" alt="${name}" width="340" height="340">
                     </div>
                     <div class="card__info">
                         <h3 class="card__title">${name}</h3>
@@ -31,127 +33,148 @@ function initTabs() {
                 </article>
             </li>
         `;
+  }
+
+  function renderCards(container, cards) {
+    clearContainer(container);
+
+    cards.forEach((card) => {
+      const categoryCard = createCardElement(card);
+      container.insertAdjacentHTML("beforeEnd", categoryCard);
+    });
+
+    addLoadMoreBtn(cards);
+  }
+
+  function clickTabHandler(event) {
+    const targetTab = event.target.closest(".menu__button");
+    if (!targetTab) return;
+
+    buttons.forEach((button) => {
+      button.classList.remove("menu__button--active");
+    });
+
+    targetTab.classList.add("menu__button--active");
+
+    const selectedCategory = targetTab.dataset.tab;
+
+    filteredProducts = products.filter(
+      (product) => product.category === selectedCategory,
+    );
+
+    renderCards(cardsContainer, filteredProducts);
+  }
+
+  function deleteLoadMoreBtn() {
+    loadMoreBtn.style.display = "none";
+  }
+
+  function clickLoadMoreBtnHandler() {
+    const hiddenItems = document.querySelectorAll(
+      ".menu__list-cards li:nth-child(n + 5)",
+    );
+
+    hiddenItems.forEach((item) => {
+      item.classList.add("show-more");
+    });
+
+    deleteLoadMoreBtn();
+  }
+
+  function addLoadMoreBtn(cards) {
+    const LIMIT_CARDS = 4;
+
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+    if (!mediaQuery.matches) return;
+
+    if (cards.length > LIMIT_CARDS) {
+      loadMoreBtn.style.display = "flex";
+    } else {
+      loadMoreBtn.style.display = "none";
     }
+  }
 
-    function renderCards(container, cards) {
-        clearContainer(container);
+  function clickCardHandler(event) {
+    const targetCard = event.target.closest(".menu__card");
 
-        const renderedCards = cards.map((card) => {
-            const categoryCard = createCardElement(card);
-            container.insertAdjacentHTML('beforeEnd', categoryCard);
-            return categoryCard;
-        });
+    if (!targetCard) return;
 
-        addLoadMoreBtn();
+    const titleElement = targetCard.querySelector(".card__title");
+    const titleText = titleElement.textContent;
 
-        return renderedCards;
+    const foundProduct = filteredProducts.find(
+      (product) => product.name === titleText,
+    );
+
+    openModal(foundProduct);
+  }
+
+  function setDefaultTab() {
+    const defaultActiveTab = buttons[0];
+    defaultActiveTab.classList.add("menu__button--active");
+
+    const defaultCategoryName = defaultActiveTab.dataset.tab;
+
+    filteredProducts = products.filter(
+      (product) => product.category === defaultCategoryName,
+    );
+
+    renderCards(cardsContainer, filteredProducts);
+  }
+
+  function closeModal() {
+    body.classList.remove("js-lock");
+    backdrop.classList.remove("modal-backdrop--active");
+  }
+
+  function clickBodyHandler(event) {
+    const targetElement = event.target;
+
+    if (targetElement.matches(".modal__button-reset")) closeModal();
+
+    if (targetElement.matches(".modal-backdrop--active")) closeModal();
+  }
+
+  document.addEventListener("keydown", (event) => {
+    if (
+      event.key === "Escape" &&
+      backdrop.classList.contains("modal-backdrop--active")
+    ) {
+      closeModal();
     }
+  });
 
-    function clickTabHandler(event) {
-        const targetTab = event.target.closest('.menu__button');
-        if (!targetTab) return;
+  function createProductModal(product) {
+    const imageNameWithHyphens = product.name
+      .toLowerCase()
+      .replace(/\s+/g, "-");
 
-        buttons.forEach((button) => {
-            button.classList.remove('menu__button--active');
-        });
-
-        targetTab.classList.add('menu__button--active');
-
-        const selectedCategory = targetTab.dataset.tab;
-        filteredProducts = products.filter((product) => product.category === selectedCategory);
-
-        renderCards(cardsContainer, filteredProducts);
-    }
-
-    const loadMoreBtn = document.querySelector('.menu__load-more-btn');
-
-    function deleteLoadMoreBtn() {
-        loadMoreBtn.style.display = 'none';
-    }
-
-    function clickLoadMoreBtnHandler() {
-        const hiddenItems = document.querySelectorAll('.menu__list-cards li:nth-child(n + 5)');
-
-        hiddenItems.forEach(item => {
-            item.classList.add('show-more');
-        });
-
-        deleteLoadMoreBtn();
-    }
-
-    function addLoadMoreBtn() {
-        const LIMIT_CARDS = 4;
-
-        const mediaQuery = window.matchMedia('(max-width: 768px)');
-        if (!mediaQuery.matches) return;
-
-        if (filteredProducts.length > LIMIT_CARDS) {
-            loadMoreBtn.style.display = 'flex';
-        } else {
-            loadMoreBtn.style.display = 'none';
-        }
-
-        loadMoreBtn.addEventListener('click', clickLoadMoreBtnHandler);
-    }
-
-    function clickCardHandler(event) {
-        const targettedCard = event.target.closest('.menu__card');
-
-        const titleElement = targettedCard.querySelector('.card__title');
-        const titleText = titleElement.textContent;
-
-        const findedProduct = filteredProducts.find((product) => product.name === titleText);
-
-        openModal(findedProduct);
-    }
-
-    function setDefaultTab() {
-        const defaultActiveTab = buttons[0];
-        defaultActiveTab.classList.add('menu__button--active');
-
-        const defaultCategoryName = defaultActiveTab.dataset.tab;
-        filteredProducts = products.filter((product) => product.category === defaultCategoryName);
-
-        renderCards(cardsContainer, filteredProducts);
-    }
-
-    function closeModal() {
-        body.classList.remove('js-lock');
-        backdrop.classList.remove('modal-backdrop--active');
-    }
-
-    function clickBodyHandler(event) {
-        const targettedElement = event.target;
-
-        if (targettedElement.matches('.modal__button-reset')) closeModal();
-        if (targettedElement.matches('.modal-backdrop--active')) closeModal();
-    }
-    function createProductModal(product) {
-        const imageNameWithHyphens = product.name.toLowerCase().replace(/\s+/g, '-');
-
-        const sizeInputs = Object
-            .entries(product.sizes)
-            .map(([size, details]) => `
-                <input class="modal__input-real visually-hidden" type="radio" name="size" value="${size}" id="size-${size}"${size === 's' ? ' checked' : ''}>
+    const sizeInputs = Object.entries(product.sizes)
+      .map(
+        ([size, details]) => `
+                <input class="modal__input-real visually-hidden" type="radio" name="size" value="${size}" id="size-${size}"${size === "s" ? " checked" : ""}>
                 <label class="modal__input-custom" for="size-${size}">
                     <span class="modal__button-tag">${size.toUpperCase()}</span>${details.size}
                 </label>
-            `)
-            .join('');
+            `,
+      )
+      .join("");
 
-        const additiveInputs = product.additives
-            .map((additive, index) => `
+    const additiveInputs = product.additives
+      .map(
+        (additive, index) => `
                 <input class="modal__input-real visually-hidden" type="checkbox" name="additive" value="${additive.name}" id="additive-${index + 1}">
                 <label class="modal__input-custom" for="additive-${index + 1}">
                     <span class="modal__button-tag">${index + 1}</span>${additive.name}
                 </label>
-            `)
-            .join('');
+            `,
+      )
+      .join("");
 
-        return `
+    return `
             <form class="modal">
                 <div class="modal__image-wrapper">
-                    <img class="modal__image" src="./assets/images/menu-page/gallery/${imageNameWithHyphens}.jpeg" alt="${product.name}">
+                    <img class="modal__image" src="./assets/images/menu-page/gallery/${imageNameWithHyphens}.webp" alt="${product.name}" width="340" height="340">
                 </div>
                 <div class="modal__content">
                     <div class="modal__header">
@@ -186,49 +209,65 @@ function initTabs() {
                 </div>
             </form>
         `;
-    }
+  }
 
-    function calculatePriceHandler(product) {
-        const { sizes, additives, price } = product;
-        const sizesList = Object.keys(sizes);
-        const additivesList = additives;
+  function calculatePriceHandler(product) {
+    const { sizes, additives, price } = product;
+    const sizesList = Object.keys(sizes);
+    const additivesList = additives;
 
-        const totalPriceElement = document.querySelector('.modal__total-price');
-        const inputs = backdrop.querySelectorAll('input');
+    const totalPriceElement = document.querySelector(".modal__total-price");
+    const inputs = backdrop.querySelectorAll("input");
 
-        const checkedValues = Array.from(inputs).map((input) => input.checked);
-        const selectedSizes = checkedValues.slice(0, sizesList.length);
-        const selectedAdditives = checkedValues.slice(sizesList.length);
+    const checkedValues = Array.from(inputs).map((input) => input.checked);
+    const selectedSizes = checkedValues.slice(0, sizesList.length);
+    const selectedAdditives = checkedValues.slice(sizesList.length);
 
-        const sizesPrice = sizesList.reduce((total, size, index) => {
-            return total + (selectedSizes[index] ? Number.parseFloat(sizes[size]['add-price']) : 0);
-        }, 0);
+    const sizesPrice = sizesList.reduce((total, size, index) => {
+      return (
+        total +
+        (selectedSizes[index] ? Number.parseFloat(sizes[size]["add-price"]) : 0)
+      );
+    }, 0);
 
-        const additivesPrice = additivesList.reduce((total, additive, index) => {
-            return total + (selectedAdditives[index] ? Number.parseFloat(additive['add-price']) : 0);
-        }, 0);
+    const additivesPrice = additivesList.reduce((total, additive, index) => {
+      return (
+        total +
+        (selectedAdditives[index]
+          ? Number.parseFloat(additive["add-price"])
+          : 0)
+      );
+    }, 0);
 
-        const finalPrice = Number.parseFloat(price) + sizesPrice + additivesPrice;
-        totalPriceElement.innerHTML = `$${finalPrice.toFixed(2)}`;
-    }
+    const finalPrice = Number.parseFloat(price) + sizesPrice + additivesPrice;
 
-    function openModal(product) {
-        clearContainer(backdrop);
+    totalPriceElement.textContent = `$${finalPrice.toFixed(2)}`;
+  }
 
-        const productModal = createProductModal(product);
-        backdrop.insertAdjacentHTML('afterBegin', productModal);
+  function openModal(product) {
+    clearContainer(backdrop);
 
-        body.classList.add('js-lock');
-        backdrop.classList.add('modal-backdrop--active');
+    const productModal = createProductModal(product);
+    backdrop.insertAdjacentHTML("afterBegin", productModal);
 
-        body.addEventListener('click', clickBodyHandler);
-        backdrop.addEventListener('change', () => calculatePriceHandler(product));
-    }
+    currentProduct = product;
 
-    tabsContainer.addEventListener('click', clickTabHandler);
-    cardsContainer.addEventListener('click', clickCardHandler);
+    body.classList.add("js-lock");
+    backdrop.classList.add("modal-backdrop--active");
+  }
 
-    setDefaultTab();
+  body.addEventListener("click", clickBodyHandler);
+
+  backdrop.addEventListener("change", () => {
+    calculatePriceHandler(currentProduct);
+  });
+
+  loadMoreBtn.addEventListener("click", clickLoadMoreBtnHandler);
+
+  tabsContainer.addEventListener("click", clickTabHandler);
+  cardsContainer.addEventListener("click", clickCardHandler);
+
+  setDefaultTab();
 }
 
-document.addEventListener('DOMContentLoaded', initTabs);
+document.addEventListener("DOMContentLoaded", initTabs);
