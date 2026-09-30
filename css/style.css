@@ -1163,9 +1163,6 @@ fieldset {
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
 }
-.nav-mobile--open {
-  transform: translateX(0);
-}
 .nav-mobile__list {
   display: flex;
   flex-direction: column;
@@ -1195,12 +1192,6 @@ fieldset {
   transform-origin: center;
   transition: transform 0.3s ease-in-out;
 }
-.nav-mobile__link--active {
-  pointer-events: none;
-}
-.nav-mobile__link--active::after {
-  transform: scaleX(1);
-}
 @media (any-hover: hover) {
   .nav-mobile__link:hover::after {
     transform: scaleX(1);
@@ -1211,6 +1202,11 @@ fieldset {
   height: 40px;
   fill: none;
   stroke: currentColor;
+}
+@media (width <= 768px) {
+  .nav-mobile--open {
+    transform: translateX(0);
+  }
 }
 
 .modal-backdrop {
